@@ -6,10 +6,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @SpringBootApplication
 public class SqlReportApplication {
@@ -34,15 +31,21 @@ public class SqlReportApplication {
 			System.out.println("DB connection established!");
 			Statement statement = connection.createStatement();
 //			String employeeTable = "select * from employee";
-			String employeeTable = "select concat(last_name, ', ', first_name) as name from employee;";
+			String employeeTable = "select concat(employee.last_name, ', ', employee.first_name) as name, role.title as role, role.salary as salary, concat(a.last_name, ', ',a.first_name) as manager from employee left join employee a on employee.manager_id = a.id join role on employee.role_id = role.id;";
 			ResultSet results = statement.executeQuery(employeeTable);
 
 			while (results.next()) {
-//				int ID = results.getInt("id");
 				name = results.getString("name");
+				role = results.getString("role");
+				manager = results.getString("manager");
+				salary = results.getInt("salary");
 
-				employeeList.add(new Employee(name, "f", "test", 1) );
-				System.out.println(name);
+				if(manager == null){
+					manager = "N/A";
+				}
+
+				employeeList.add(new Employee(name, role, manager, salary) );
+				System.out.println(manager);
 				System.out.println();
 
 				//logic for retrieving data and creating new employee for it here
