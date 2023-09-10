@@ -49,16 +49,16 @@
         <band height="120" splitType="Stretch">
             <property name="com.jaspersoft.studio.unit.height" value="px"/>
             <frame>
-                <reportElement mode="Opaque" x="2" y="0" width="550" height="120" backcolor="rgba(181, 170, 171, 0.84313726)" uuid="57480bd1-fde6-4893-a6db-30803279bf60"/>
+                <reportElement mode="Opaque" x="2" y="0" width="550" height="120" backcolor="#708090" uuid="57480bd1-fde6-4893-a6db-30803279bf60"/>
                 <staticText>
-                    <reportElement x="150" y="0" width="250" height="40" uuid="2daecce0-c569-4d03-ac75-4032631c1d2f"/>
+                    <reportElement x="150" y="0" width="250" height="40" forecolor="#FFFFFF" uuid="2daecce0-c569-4d03-ac75-4032631c1d2f"/>
                     <textElement textAlignment="Center" verticalAlignment="Middle">
                         <font size="16"/>
                     </textElement>
-                    <text><![CDATA[SQL Report Generator]]></text>
+                    <text><![CDATA[SQL Report]]></text>
                 </staticText>
                 <textField>
-                    <reportElement x="80" y="40" width="400" height="70" uuid="9d982f0d-5286-43fc-a628-d3cf4eeb5780"/>
+                    <reportElement x="80" y="40" width="400" height="70" forecolor="#FFFFFF" uuid="9d982f0d-5286-43fc-a628-d3cf4eeb5780"/>
                     <textElement textAlignment="Center" verticalAlignment="Middle">
                         <font size="24"/>
                     </textElement>
@@ -90,7 +90,7 @@
                         <property name="com.jaspersoft.studio.components.table.model.column.name" value="Column1"/>
                         <jr:columnHeader style="Table_CH" height="30" rowSpan="1">
                             <staticText>
-                                <reportElement x="0" y="0" width="100" height="30" uuid="43db6517-5e5a-4d7c-8717-45a6e6ce2528"/>
+                                <reportElement mode="Opaque" x="0" y="0" width="100" height="30" forecolor="#FFFFFF" backcolor="#708090" uuid="43db6517-5e5a-4d7c-8717-45a6e6ce2528"/>
                                 <textElement textAlignment="Center" verticalAlignment="Middle">
                                     <font size="14"/>
                                 </textElement>
@@ -111,7 +111,7 @@
                         <property name="com.jaspersoft.studio.components.table.model.column.name" value="Column2"/>
                         <jr:columnHeader style="Table_CH" height="30" rowSpan="1">
                             <staticText>
-                                <reportElement x="0" y="0" width="100" height="30" uuid="b2173fd5-7f43-42d6-924d-250a7c10c66b"/>
+                                <reportElement mode="Opaque" x="0" y="0" width="100" height="30" forecolor="#FFFFFF" backcolor="#708090" uuid="b2173fd5-7f43-42d6-924d-250a7c10c66b"/>
                                 <textElement textAlignment="Center" verticalAlignment="Middle">
                                     <font size="14"/>
                                 </textElement>
@@ -132,7 +132,7 @@
                         <property name="com.jaspersoft.studio.components.table.model.column.name" value="Column3"/>
                         <jr:columnHeader style="Table_CH" height="30" rowSpan="1">
                             <staticText>
-                                <reportElement x="0" y="0" width="90" height="30" uuid="67ab2b30-7733-4b60-b8a9-c1fdada49576"/>
+                                <reportElement mode="Opaque" x="0" y="0" width="90" height="30" forecolor="#FFFFFF" backcolor="#708090" uuid="67ab2b30-7733-4b60-b8a9-c1fdada49576"/>
                                 <textElement textAlignment="Center" verticalAlignment="Middle">
                                     <font size="14"/>
                                 </textElement>
@@ -145,7 +145,7 @@
                                 <textElement textAlignment="Center" verticalAlignment="Middle">
                                     <font size="12"/>
                                 </textElement>
-                                <textFieldExpression><![CDATA[$F{employeeSalary}]]></textFieldExpression>
+                                <textFieldExpression><![CDATA["$" + $F{employeeSalary}]]></textFieldExpression>
                             </textField>
                         </jr:detailCell>
                     </jr:column>
@@ -153,7 +153,7 @@
                         <property name="com.jaspersoft.studio.components.table.model.column.name" value="Column4"/>
                         <jr:columnHeader style="Table_CH" height="30" rowSpan="1">
                             <staticText>
-                                <reportElement x="0" y="0" width="100" height="30" uuid="54f2b542-e7fe-4230-aab6-782e070ed564"/>
+                                <reportElement mode="Opaque" x="0" y="0" width="100" height="30" forecolor="#FFFFFF" backcolor="#708090" uuid="54f2b542-e7fe-4230-aab6-782e070ed564"/>
                                 <textElement textAlignment="Center" verticalAlignment="Middle">
                                     <font size="14"/>
                                 </textElement>
@@ -174,9 +174,6 @@
             </componentElement>
         </band>
     </detail>
-    <columnFooter>
-        <band height="45" splitType="Stretch"/>
-    </columnFooter>
     <pageFooter>
         <band height="62" splitType="Stretch">
             <textField>
@@ -188,7 +185,4 @@
             </textField>
         </band>
     </pageFooter>
-    <summary>
-        <band height="42" splitType="Stretch"/>
-    </summary>
 </jasperReport>

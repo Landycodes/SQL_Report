@@ -15,7 +15,6 @@ public class SqlReportApplication {
 		SpringApplication.run(SqlReportApplication.class, args);
 
 		String filePath = "src\\main\\resources\\templates\\SQL_Report.jrxml";
-		JRBeanCollectionDataSource reportDatasource = null;
 		List<Employee> employeeList = new ArrayList<>();
 		String name;
 		String role;
@@ -30,7 +29,6 @@ public class SqlReportApplication {
 			Connection connection = DriverManager.getConnection(jdbcUrl, username, password);
 			System.out.println("DB connection established!");
 			Statement statement = connection.createStatement();
-//			String employeeTable = "select * from employee";
 			String employeeTable = "select concat(employee.last_name, ', ', employee.first_name) as name, role.title as role, role.salary as salary, concat(a.last_name, ', ',a.first_name) as manager from employee left join employee a on employee.manager_id = a.id join role on employee.role_id = role.id;";
 			ResultSet results = statement.executeQuery(employeeTable);
 
@@ -45,22 +43,16 @@ public class SqlReportApplication {
 				}
 
 				employeeList.add(new Employee(name, role, manager, salary) );
-				System.out.println(manager);
-				System.out.println();
-
-				//logic for retrieving data and creating new employee for it here
-				// create an employee object for each row
-				//add each employee object to the employee list
-				reportDatasource = new JRBeanCollectionDataSource(employeeList);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 
+		JRBeanCollectionDataSource	reportDatasource = new JRBeanCollectionDataSource(employeeList);
+
 		Map<String, Object> parameters = new HashMap<>();
 		parameters.put("reportTitle", "Employee CMS report");
 		parameters.put("ReportDataset", reportDatasource);
-		System.out.println(reportDatasource.getData());
 
 		try {
 			JasperReport report = JasperCompileManager.compileReport(filePath);
